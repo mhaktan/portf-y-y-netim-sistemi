@@ -1,0 +1,320 @@
+{
+  "id": "report-workAssignment-1793289274070",
+  "name": "İş Ataması Detay Raporu",
+  "orientation": "portrait",
+  "pageSize": "a4",
+  "elements": [
+    {
+      "id": "pdf-mvtq4rme-95",
+      "type": "header",
+      "x": 20,
+      "y": 25,
+      "width": 170,
+      "height": 10,
+      "props": {
+        "text": "İş Ataması Detay Raporu",
+        "fontSize": 16,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-96",
+      "type": "divider",
+      "x": 20,
+      "y": 39,
+      "width": 170,
+      "height": 2,
+      "props": {
+        "lineColor": "#999999"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-97",
+      "type": "textbox",
+      "x": 20,
+      "y": 45,
+      "width": 170,
+      "height": 7,
+      "props": {
+        "text": "İş Ataması Bilgileri",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-98",
+      "type": "textbox",
+      "x": 20,
+      "y": 56,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Title",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-99",
+      "type": "textbox",
+      "x": 72,
+      "y": 56,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.title",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-100",
+      "type": "textbox",
+      "x": 20,
+      "y": 66,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Description",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-101",
+      "type": "textbox",
+      "x": 72,
+      "y": 66,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.description",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-102",
+      "type": "textbox",
+      "x": 20,
+      "y": 76,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Assignment Type",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-103",
+      "type": "textbox",
+      "x": 72,
+      "y": 76,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.assignmentType",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-104",
+      "type": "textbox",
+      "x": 20,
+      "y": 86,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Priority",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-105",
+      "type": "textbox",
+      "x": 72,
+      "y": 86,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.priority",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-106",
+      "type": "textbox",
+      "x": 20,
+      "y": 96,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Due Date",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-107",
+      "type": "textbox",
+      "x": 72,
+      "y": 96,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.dueDate",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-108",
+      "type": "textbox",
+      "x": 20,
+      "y": 106,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Completed Date",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-109",
+      "type": "textbox",
+      "x": 72,
+      "y": 106,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.completedDate",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-110",
+      "type": "textbox",
+      "x": 20,
+      "y": 116,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Status",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-111",
+      "type": "textbox",
+      "x": 72,
+      "y": 116,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.status",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-112",
+      "type": "textbox",
+      "x": 20,
+      "y": 126,
+      "width": 50,
+      "height": 6,
+      "props": {
+        "text": "Completion Note",
+        "fontSize": 10,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-113",
+      "type": "textbox",
+      "x": 72,
+      "y": 126,
+      "width": 118,
+      "height": 6,
+      "props": {
+        "text": "",
+        "binding": "data.completionNote",
+        "fontSize": 10
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-114",
+      "type": "textbox",
+      "x": 20,
+      "y": 138,
+      "width": 170,
+      "height": 7,
+      "props": {
+        "text": "Onay Geçmişi",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "id": "pdf-mvtq4rme-115",
+      "type": "table",
+      "x": 20,
+      "y": 149,
+      "width": 170,
+      "height": 56,
+      "props": {
+        "binding": "approvalHistory",
+        "columns": [
+          {
+            "key": "stepName",
+            "label": "Adım",
+            "width": 45
+          },
+          {
+            "key": "action",
+            "label": "Aksiyon",
+            "width": 30
+          },
+          {
+            "key": "userName",
+            "label": "Kullanıcı",
+            "width": 45
+          },
+          {
+            "key": "actionDate",
+            "label": "Tarih",
+            "width": 50
+          }
+        ],
+        "headerBgColor": "#f0f0f0",
+        "borderColor": "#cccccc",
+        "rowHeight": 7
+      }
+    }
+  ],
+  "apiBinding": {
+    "method": "GET",
+    "url": "api/services/app/WorkAssignment/GetReportData?id={{id}}",
+    "params": [
+      {
+        "name": "id"
+      }
+    ]
+  },
+  "headerConfig": {
+    "enabled": true,
+    "height": 15,
+    "text": "İş Ataması Detay Raporu",
+    "fontSize": 9
+  },
+  "pageNumberConfig": {
+    "enabled": true
+  }
+}

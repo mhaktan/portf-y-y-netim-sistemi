@@ -1,0 +1,518 @@
+[
+  {
+    "id": "flow-ManagerTarget-approval",
+    "name": "ManagerTarget Approval Flow",
+    "description": "Auto-generated approval flow for ManagerTarget. Customize email templates and add conditions as needed.",
+    "resourceName": "ManagerTarget",
+    "enabled": true,
+    "variables": [
+      {
+        "name": "assigneeEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "creatorEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "departmentEmails",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "formLink",
+        "type": "string",
+        "defaultValue": ""
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ManagerTarget-approval-trigger",
+        "type": "trigger",
+        "label": "On ManagerTarget Submit",
+        "position": {
+          "x": 300,
+          "y": 50
+        },
+        "trigger": {
+          "type": "on-field-change",
+          "resourceName": "ManagerTarget",
+          "fieldName": "status"
+        }
+      },
+      {
+        "id": "ManagerTarget-approval-condition",
+        "type": "condition",
+        "label": "Status = PendingApproval?",
+        "position": {
+          "x": 300,
+          "y": 160
+        },
+        "condition": {
+          "logic": "and",
+          "rules": [
+            {
+              "field": "triggerData.status",
+              "operator": "equals",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ManagerTarget-approval-approval",
+        "type": "approval",
+        "label": "ManagerTarget Approval",
+        "position": {
+          "x": 300,
+          "y": 280
+        },
+        "approval": {
+          "steps": [
+            {
+              "name": "Şube Müdürü Onayı",
+              "assigneeType": "role",
+              "assigneeValue": "BranchManager",
+              "actions": [
+                {
+                  "label": "Onayla",
+                  "type": "approve"
+                },
+                {
+                  "label": "Revize Et",
+                  "type": "revise",
+                  "requiredFields": [
+                    "revisionNote"
+                  ]
+                }
+              ]
+            }
+          ],
+          "trackRevisionHistory": true,
+          "onCompleteEvent": "ManagerTarget-approval-completed"
+        }
+      },
+      {
+        "id": "ManagerTarget-approval-email",
+        "type": "action",
+        "label": "Send Approval Email",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{assigneeEmail}}",
+            "subject": "{{triggerData.description}} — Hedef Onayınızı Bekliyor",
+            "body": "<p>Sayın Şube Müdürü,</p><p><strong>{{triggerData.description}}</strong> hedefi onayınızı beklemektedir.</p>",
+            "contentType": "html"
+          }
+        }
+      },
+      {
+        "id": "ManagerTarget-approval-completion-trigger",
+        "type": "trigger",
+        "label": "On ManagerTarget Approved",
+        "position": {
+          "x": 700,
+          "y": 50
+        },
+        "trigger": {
+          "type": "manual",
+          "resourceName": "ManagerTarget"
+        }
+      },
+      {
+        "id": "ManagerTarget-approval-completion-email",
+        "type": "action",
+        "label": "Send Completion Email",
+        "position": {
+          "x": 700,
+          "y": 160
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{creatorEmail}}",
+            "cc": "{{departmentEmails}}",
+            "subject": "{{triggerData.formNo}} — Tum onaylar tamamlandi",
+            "body": "<p>{{triggerData.formNo}} numarali formun onay sureci tamamlanmistir.</p>",
+            "contentType": "html"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "gen_1793289272656_13",
+        "sourceNodeId": "ManagerTarget-approval-trigger",
+        "targetNodeId": "ManagerTarget-approval-condition"
+      },
+      {
+        "id": "gen_1793289272656_14",
+        "sourceNodeId": "ManagerTarget-approval-condition",
+        "targetNodeId": "ManagerTarget-approval-approval",
+        "branch": "true"
+      },
+      {
+        "id": "gen_1793289272656_15",
+        "sourceNodeId": "ManagerTarget-approval-approval",
+        "targetNodeId": "ManagerTarget-approval-email"
+      },
+      {
+        "id": "gen_1793289272656_16",
+        "sourceNodeId": "ManagerTarget-approval-completion-trigger",
+        "targetNodeId": "ManagerTarget-approval-completion-email"
+      }
+    ],
+    "createdAt": "2026-10-29T15:54:32.656Z",
+    "updatedAt": "2026-10-29T15:54:32.656Z"
+  },
+  {
+    "id": "flow-WorkAssignment-approval",
+    "name": "WorkAssignment Approval Flow",
+    "description": "Auto-generated approval flow for WorkAssignment. Customize email templates and add conditions as needed.",
+    "resourceName": "WorkAssignment",
+    "enabled": true,
+    "variables": [
+      {
+        "name": "assigneeEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "creatorEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "departmentEmails",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "formLink",
+        "type": "string",
+        "defaultValue": ""
+      }
+    ],
+    "nodes": [
+      {
+        "id": "WorkAssignment-approval-trigger",
+        "type": "trigger",
+        "label": "On WorkAssignment Submit",
+        "position": {
+          "x": 300,
+          "y": 50
+        },
+        "trigger": {
+          "type": "on-field-change",
+          "resourceName": "WorkAssignment",
+          "fieldName": "status"
+        }
+      },
+      {
+        "id": "WorkAssignment-approval-condition",
+        "type": "condition",
+        "label": "Status = PendingApproval?",
+        "position": {
+          "x": 300,
+          "y": 160
+        },
+        "condition": {
+          "logic": "and",
+          "rules": [
+            {
+              "field": "triggerData.status",
+              "operator": "equals",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      {
+        "id": "WorkAssignment-approval-approval",
+        "type": "approval",
+        "label": "WorkAssignment Approval",
+        "position": {
+          "x": 300,
+          "y": 280
+        },
+        "approval": {
+          "steps": [
+            {
+              "name": "Şube Müdürü Onayı",
+              "assigneeType": "role",
+              "assigneeValue": "BranchManager",
+              "actions": [
+                {
+                  "label": "Tamamlandı Onayla",
+                  "type": "approve"
+                },
+                {
+                  "label": "Revize Et",
+                  "type": "revise",
+                  "requiredFields": [
+                    "revisionNote"
+                  ]
+                }
+              ]
+            }
+          ],
+          "trackRevisionHistory": true,
+          "onCompleteEvent": "WorkAssignment-approval-completed"
+        }
+      },
+      {
+        "id": "WorkAssignment-approval-email",
+        "type": "action",
+        "label": "Send Approval Email",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{assigneeEmail}}",
+            "subject": "{{triggerData.title}} — İş Tamamlama Onayınızı Bekliyor",
+            "body": "<p>Sayın Şube Müdürü,</p><p><strong>{{triggerData.title}}</strong> görevi tamamlama onayınızı beklemektedir.</p>",
+            "contentType": "html"
+          }
+        }
+      },
+      {
+        "id": "WorkAssignment-approval-completion-trigger",
+        "type": "trigger",
+        "label": "On WorkAssignment Approved",
+        "position": {
+          "x": 700,
+          "y": 50
+        },
+        "trigger": {
+          "type": "manual",
+          "resourceName": "WorkAssignment"
+        }
+      },
+      {
+        "id": "WorkAssignment-approval-completion-email",
+        "type": "action",
+        "label": "Send Completion Email",
+        "position": {
+          "x": 700,
+          "y": 160
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{creatorEmail}}",
+            "cc": "{{departmentEmails}}",
+            "subject": "{{triggerData.formNo}} — Tum onaylar tamamlandi",
+            "body": "<p>{{triggerData.formNo}} numarali formun onay sureci tamamlanmistir.</p>",
+            "contentType": "html"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "gen_1793289272656_17",
+        "sourceNodeId": "WorkAssignment-approval-trigger",
+        "targetNodeId": "WorkAssignment-approval-condition"
+      },
+      {
+        "id": "gen_1793289272656_18",
+        "sourceNodeId": "WorkAssignment-approval-condition",
+        "targetNodeId": "WorkAssignment-approval-approval",
+        "branch": "true"
+      },
+      {
+        "id": "gen_1793289272656_19",
+        "sourceNodeId": "WorkAssignment-approval-approval",
+        "targetNodeId": "WorkAssignment-approval-email"
+      },
+      {
+        "id": "gen_1793289272657_20",
+        "sourceNodeId": "WorkAssignment-approval-completion-trigger",
+        "targetNodeId": "WorkAssignment-approval-completion-email"
+      }
+    ],
+    "createdAt": "2026-10-29T15:54:32.656Z",
+    "updatedAt": "2026-10-29T15:54:32.656Z"
+  },
+  {
+    "id": "flow-PerformanceReport-approval",
+    "name": "PerformanceReport Approval Flow",
+    "description": "Auto-generated approval flow for PerformanceReport. Customize email templates and add conditions as needed.",
+    "resourceName": "PerformanceReport",
+    "enabled": true,
+    "variables": [
+      {
+        "name": "assigneeEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "creatorEmail",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "departmentEmails",
+        "type": "string",
+        "defaultValue": ""
+      },
+      {
+        "name": "formLink",
+        "type": "string",
+        "defaultValue": ""
+      }
+    ],
+    "nodes": [
+      {
+        "id": "PerformanceReport-approval-trigger",
+        "type": "trigger",
+        "label": "On PerformanceReport Submit",
+        "position": {
+          "x": 300,
+          "y": 50
+        },
+        "trigger": {
+          "type": "on-field-change",
+          "resourceName": "PerformanceReport",
+          "fieldName": "status"
+        }
+      },
+      {
+        "id": "PerformanceReport-approval-condition",
+        "type": "condition",
+        "label": "Status = PendingApproval?",
+        "position": {
+          "x": 300,
+          "y": 160
+        },
+        "condition": {
+          "logic": "and",
+          "rules": [
+            {
+              "field": "triggerData.status",
+              "operator": "equals",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "PerformanceReport-approval-approval",
+        "type": "approval",
+        "label": "PerformanceReport Approval",
+        "position": {
+          "x": 300,
+          "y": 280
+        },
+        "approval": {
+          "steps": [
+            {
+              "name": "Şube Müdürü Onayı",
+              "assigneeType": "role",
+              "assigneeValue": "BranchManager",
+              "actions": [
+                {
+                  "label": "Onayla",
+                  "type": "approve"
+                },
+                {
+                  "label": "Revize Et",
+                  "type": "revise",
+                  "requiredFields": [
+                    "revisionNote"
+                  ]
+                }
+              ]
+            }
+          ],
+          "trackRevisionHistory": true,
+          "onCompleteEvent": "PerformanceReport-approval-completed"
+        }
+      },
+      {
+        "id": "PerformanceReport-approval-email",
+        "type": "action",
+        "label": "Send Approval Email",
+        "position": {
+          "x": 300,
+          "y": 400
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{assigneeEmail}}",
+            "subject": "{{triggerData.reportName}} — Performans Raporu Onayınızı Bekliyor",
+            "body": "<p>Sayın Şube Müdürü,</p><p><strong>{{triggerData.reportName}}</strong> performans raporu onayınızı beklemektedir.</p>",
+            "contentType": "html"
+          }
+        }
+      },
+      {
+        "id": "PerformanceReport-approval-completion-trigger",
+        "type": "trigger",
+        "label": "On PerformanceReport Approved",
+        "position": {
+          "x": 700,
+          "y": 50
+        },
+        "trigger": {
+          "type": "manual",
+          "resourceName": "PerformanceReport"
+        }
+      },
+      {
+        "id": "PerformanceReport-approval-completion-email",
+        "type": "action",
+        "label": "Send Completion Email",
+        "position": {
+          "x": 700,
+          "y": 160
+        },
+        "action": {
+          "type": "send-email",
+          "config": {
+            "to": "{{creatorEmail}}",
+            "cc": "{{departmentEmails}}",
+            "subject": "{{triggerData.formNo}} — Tum onaylar tamamlandi",
+            "body": "<p>{{triggerData.formNo}} numarali formun onay sureci tamamlanmistir.</p>",
+            "contentType": "html"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "gen_1793289272657_21",
+        "sourceNodeId": "PerformanceReport-approval-trigger",
+        "targetNodeId": "PerformanceReport-approval-condition"
+      },
+      {
+        "id": "gen_1793289272657_22",
+        "sourceNodeId": "PerformanceReport-approval-condition",
+        "targetNodeId": "PerformanceReport-approval-approval",
+        "branch": "true"
+      },
+      {
+        "id": "gen_1793289272657_23",
+        "sourceNodeId": "PerformanceReport-approval-approval",
+        "targetNodeId": "PerformanceReport-approval-email"
+      },
+      {
+        "id": "gen_1793289272657_24",
+        "sourceNodeId": "PerformanceReport-approval-completion-trigger",
+        "targetNodeId": "PerformanceReport-approval-completion-email"
+      }
+    ],
+    "createdAt": "2026-10-29T15:54:32.657Z",
+    "updatedAt": "2026-10-29T15:54:32.657Z"
+  }
+]
